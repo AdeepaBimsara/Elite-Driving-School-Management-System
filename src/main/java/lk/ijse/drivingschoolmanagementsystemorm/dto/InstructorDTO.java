@@ -1,4 +1,17 @@
 package lk.ijse.drivingschoolmanagementsystemorm.dto;
 
-public class Instructor {
+import lombok.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+public class InstructorDTO {
+    private String InstructorId;
+    private String name;
+    private String email;
+    private String phone;
+    private String specialization;
+
 }
