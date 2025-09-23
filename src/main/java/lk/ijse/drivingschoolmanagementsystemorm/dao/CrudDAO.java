@@ -1,6 +1,7 @@
 package lk.ijse.drivingschoolmanagementsystemorm.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 public interface CrudDAO<T> extends SuperDAO{
@@ -10,5 +11,7 @@ public interface CrudDAO<T> extends SuperDAO{
     boolean save(T student) throws SQLException;
 
     Optional<T> findById(String id) throws SQLException;
+
+    List<T> getAll() throws SQLException;
 
 }

@@ -10,6 +10,8 @@ import lk.ijse.drivingschoolmanagementsystemorm.dto.StudentDTO;
 import lk.ijse.drivingschoolmanagementsystemorm.entity.Student;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class StudentBOImpl implements StudentBO {
@@ -52,5 +54,18 @@ public class StudentBOImpl implements StudentBO {
 
         boolean save = studentDAO.save(student);
 
+    }
+
+    @Override
+    public List<StudentDTO> getAllStudent() throws SQLException {
+        List<Student> students = studentDAO.getAll();
+        List<StudentDTO> studentDTOS = new ArrayList<>();
+
+        for (Student student : students){
+
+            studentDTOS.add(converter.getStudentDTO(student));
+        }
+
+        return studentDTOS;
     }
 }

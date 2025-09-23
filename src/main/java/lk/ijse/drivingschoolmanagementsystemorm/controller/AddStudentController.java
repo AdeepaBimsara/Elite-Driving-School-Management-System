@@ -86,7 +86,7 @@ public class AddStudentController implements Initializable {
 
     @FXML
     void btnCancel(ActionEvent event) {
-
+        resetPage();
     }
 
     @FXML

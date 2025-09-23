@@ -9,11 +9,14 @@ module lk.ijse.drivingschoolmanagementsystemorm {
 
     //entity package not open Hibernate module
     requires org.hibernate.orm.core; //add Hirbernate module
-    requires jakarta.persistence; //JPA
+    requires jakarta.persistence;//JPA
 
     //access  to Hibernate
     opens lk.ijse.drivingschoolmanagementsystemorm.entity to org.hibernate.orm.core;
 
+    opens lk.ijse.drivingschoolmanagementsystemorm.dto.tm to javafx.base;
+
     opens lk.ijse.drivingschoolmanagementsystemorm.controller to javafx.fxml;
+
     exports lk.ijse.drivingschoolmanagementsystemorm;
 }

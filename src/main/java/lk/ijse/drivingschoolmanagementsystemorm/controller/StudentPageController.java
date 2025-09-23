@@ -1,5 +1,6 @@
 package lk.ijse.drivingschoolmanagementsystemorm.controller;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,12 +9,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.drivingschoolmanagementsystemorm.bo.BOFactory;
+import lk.ijse.drivingschoolmanagementsystemorm.bo.BOTypes;
+import lk.ijse.drivingschoolmanagementsystemorm.bo.custom.StudentBO;
+import lk.ijse.drivingschoolmanagementsystemorm.dto.StudentDTO;
+import lk.ijse.drivingschoolmanagementsystemorm.dto.tm.StudentTM;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class StudentPageController implements Initializable {
+
+    private final StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
 
     @FXML
     private AnchorPane ancStudent;
@@ -28,25 +39,42 @@ public class StudentPageController implements Initializable {
     private Button btnUpdate;
 
     @FXML
-    private TableColumn<?, ?> colAddress;
+    private TableColumn<StudentTM, String> colAddress;
 
     @FXML
-    private TableColumn<?, ?> colContact;
+    private TableColumn<StudentTM, String> colContact;
 
     @FXML
-    private TableColumn<?, ?> colEmail;
+    private TableColumn<StudentTM, String> colEmail;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<StudentTM, String> colName;
 
     @FXML
-    private TableColumn<?, ?> colRegDate;
+    private TableColumn<StudentTM, String> colRegDate;
 
     @FXML
-    private TableColumn<?, ?> colStudentId;
+    private TableColumn<StudentTM, String> colStudentId;
 
     @FXML
-    private TableView<?> tblStudent;
+    private TableView<StudentTM> tblStudent;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        colStudentId.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colRegDate.setCellValueFactory(new PropertyValueFactory<>("registrarDate"));
+
+        try {
+            loadTableData();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void btnAddNewStudent(ActionEvent event) {
@@ -79,8 +107,20 @@ public class StudentPageController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    private void loadTableData() throws SQLException {
 
+        tblStudent.setItems(FXCollections.observableArrayList(
+
+                studentBO.getAllStudent().stream().map(studentDTO ->
+                new StudentTM(
+                        studentDTO.getStudentId(),
+                        studentDTO.getName(),
+                        studentDTO.getAddress(),
+                        studentDTO.getPhone(),
+                        studentDTO.getEmail(),
+                        studentDTO.getRegistrarDate()
+
+                        )).toList()
+        ));
     }
 }

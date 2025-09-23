@@ -74,4 +74,17 @@ public class StudentDAOImpl implements StudentDAO {
             session.close();
         }
     }
+
+    @Override
+    public List<Student> getAll() throws SQLException {
+        Session session = factoryConfiguration.getSession();
+        try {
+            Query<Student> query = session.createQuery("FROM Student", Student.class);
+            List<Student> studentList = query.list();
+
+            return studentList;
+        }finally {
+            session.close();
+        }
+    }
 }
