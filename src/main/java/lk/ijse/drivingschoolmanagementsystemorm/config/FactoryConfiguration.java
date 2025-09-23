@@ -38,10 +38,10 @@ public class FactoryConfiguration {
 
     }
 
-//    public Session getSession(){
-//        Session session = sessionFactory.openSession();
-//        return session;
-//    }
+    public Session getSession(){
+        Session session = sessionFactory.openSession();
+        return session;
+    }
 
     public Session getCurrentSession(){
         return sessionFactory.getCurrentSession();

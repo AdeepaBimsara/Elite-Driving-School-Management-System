@@ -17,8 +17,19 @@ public class AppInitializer extends Application {
     public static void main(String[] args) {
         launch(args);
 
-        Session currentSession1 = FactoryConfiguration.getInstance().getCurrentSession();
-        System.out.println(currentSession1);
+                Session currentSession1 = FactoryConfiguration.getInstance().getCurrentSession();
+        Session currentSession2 = FactoryConfiguration.getInstance().getCurrentSession();
+
+        System.out.println("=========== Current session");
+        System.out.println(currentSession1 == currentSession2);
+        System.out.println(currentSession1.equals(currentSession2));
+
+        System.out.println("==============================");
+        Session session1 = FactoryConfiguration.getInstance().getSession();
+        Session session2 = FactoryConfiguration.getInstance().getSession();
+
+        System.out.println(session1 == session2);
+        System.out.println(session1.equals(session2));
 
     }
 

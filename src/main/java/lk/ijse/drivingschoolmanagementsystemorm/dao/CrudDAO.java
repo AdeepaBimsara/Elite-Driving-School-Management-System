@@ -1,4 +1,8 @@
 package lk.ijse.drivingschoolmanagementsystemorm.dao;
 
-public interface CrudDAO {
+import java.sql.SQLException;
+
+public interface CrudDAO<T> extends SuperDAO{
+
+    String getLastId() throws SQLException;
 }
