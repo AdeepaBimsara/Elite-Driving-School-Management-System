@@ -1,15 +1,30 @@
 package lk.ijse.drivingschoolmanagementsystemorm.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+
+@Entity
+@Table(name = "learnings")
 public class Learning {
-    private String courseId;
-    private String instructorId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(nullable = false)
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
 
 }

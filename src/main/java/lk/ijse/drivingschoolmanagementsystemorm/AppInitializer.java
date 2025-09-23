@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import lk.ijse.drivingschoolmanagementsystemorm.config.FactoryConfiguration;
+import org.hibernate.Session;
 
 import java.io.IOException;
 
@@ -14,6 +16,10 @@ public class AppInitializer extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
+        Session currentSession1 = FactoryConfiguration.getInstance().getCurrentSession();
+        System.out.println(currentSession1);
+
     }
 
     @Override
@@ -54,4 +60,6 @@ public class AppInitializer extends Application {
 
         new Thread(loadingTask).start();
     }
+
+
 }

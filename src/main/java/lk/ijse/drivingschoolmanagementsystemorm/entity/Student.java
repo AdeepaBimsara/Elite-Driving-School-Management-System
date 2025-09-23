@@ -1,20 +1,51 @@
 package lk.ijse.drivingschoolmanagementsystemorm.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+
+@Entity
+@Table(name = "students")
 public class Student {
+
+    @Id
+    @Column(name = "student_id")
     private String studentId;
+
+    @Column(name = "student_name", nullable = false)
     private String name;
+
+    @Column
     private String address;
+
+    @Column(length = 15) // varchar(15)
     private String phone;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(name = "registrar_date")
     private LocalDate registrarDate;
+
+    // 1:1 with User
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
+
+    // 1:M with Payment
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Payment> payments;
+
+    // 1:M with Enrollment
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Enrollment> enrollments;
+
 
 }
