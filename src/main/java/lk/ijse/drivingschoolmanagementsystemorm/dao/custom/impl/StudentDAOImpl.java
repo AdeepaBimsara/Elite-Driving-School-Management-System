@@ -2,10 +2,14 @@ package lk.ijse.drivingschoolmanagementsystemorm.dao.custom.impl;
 
 import lk.ijse.drivingschoolmanagementsystemorm.config.FactoryConfiguration;
 import lk.ijse.drivingschoolmanagementsystemorm.dao.custom.StudentDAO;
+import lk.ijse.drivingschoolmanagementsystemorm.entity.Student;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class StudentDAOImpl implements StudentDAO {
 
@@ -35,5 +39,39 @@ public class StudentDAOImpl implements StudentDAO {
         }
 
 
+    }
+
+    @Override
+    public boolean save(Student student) throws SQLException {
+
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            session.persist(student);
+            transaction.commit();
+            return true;
+
+        }catch (Exception e){
+            transaction.rollback();
+            return false;
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public Optional<Student> findById(String id) throws SQLException {
+        Session session = factoryConfiguration.getSession();
+
+        try {
+
+            Student student = session.get(Student.class, id);
+            return Optional.ofNullable(student);
+
+        }finally {
+
+            session.close();
+        }
     }
 }

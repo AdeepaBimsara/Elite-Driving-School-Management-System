@@ -50,7 +50,7 @@ public class AppInitializer extends Application {
         Task<Scene> loadingTask = new Task<>() {
             @Override
             protected Scene call() throws Exception {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/LoginPage.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/DashbordAdmin.fxml"));
                     return new Scene(fxmlLoader.load());
             }
         };
