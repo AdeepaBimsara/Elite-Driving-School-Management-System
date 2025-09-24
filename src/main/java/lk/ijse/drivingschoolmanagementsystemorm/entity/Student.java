@@ -40,11 +40,11 @@ public class Student {
     private User user;
 
     // 1:M with Payment
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Payment> payments;
 
     // 1:M with Enrollment
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Enrollment> enrollments;
 
 

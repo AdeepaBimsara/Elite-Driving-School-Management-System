@@ -19,11 +19,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AddStudentController implements Initializable {
 
     private final StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
+    public Button btnDelete;
 
 
     @Override
@@ -160,4 +162,83 @@ public class AddStudentController implements Initializable {
 
     }
 
+    public void setStudentData(StudentDTO studentDTO) {
+        lblStudentID.setText(studentDTO.getStudentId());
+        txtName.setText(studentDTO.getName());
+        txtAddress.setText(studentDTO.getAddress());
+        txtContact.setText(studentDTO.getPhone());
+        txtEmail.setText(studentDTO.getEmail());
+        datePicker.setValue(studentDTO.getRegistrarDate());
+    }
+
+
+    public void btnDelete(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Are your sure ?",
+                ButtonType.YES,
+                ButtonType.NO
+        );
+
+        Optional<ButtonType> response = alert.showAndWait();
+
+        if (response.isPresent() && response.get() == ButtonType.YES){
+
+            try{
+                String studentId = lblStudentID.getText();
+
+                boolean isDeleted = studentBO.deleteStudent(studentId);
+
+                if (isDeleted){
+                    resetPage();
+                    new Alert(
+                            Alert.AlertType.INFORMATION, "student deleted successfully."
+                    ).show();
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "Fail to delete customer.").show();
+
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                new Alert(
+                        Alert.AlertType.ERROR, "Fail to delete student..!"
+                ).show();
+            }
+
+        }
+    }
+
+    public void btnUpdate(ActionEvent actionEvent) {
+
+        String studentId = lblStudentID.getText();
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        String phone = txtContact.getText();
+        String email = txtEmail.getText();
+        LocalDate regDate = datePicker.getValue();
+
+        StudentDTO studentDTO = new StudentDTO(
+                studentId,
+                name,
+                address,
+                phone,
+                email,
+                regDate
+        );
+
+
+        try {
+
+            studentBO.updateStudent(studentDTO);
+            new Alert(Alert.AlertType.CONFIRMATION,"student update successfully!").show();
+            resetPage();
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+            new Alert(Alert.AlertType.CONFIRMATION,"faill to update student!").show();
+
+        }
+    }
 }

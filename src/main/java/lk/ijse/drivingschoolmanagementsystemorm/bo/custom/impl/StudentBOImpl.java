@@ -68,4 +68,35 @@ public class StudentBOImpl implements StudentBO {
 
         return studentDTOS;
     }
+
+    @Override
+    public boolean deleteStudent(String id) throws Exception {
+        Optional<Student> optionalStudent = studentDAO.findById(id);
+
+        if (optionalStudent.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"student not found");
+        }
+
+        try{
+            boolean delete = studentDAO.delete(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void updateStudent(StudentDTO studentDTO) throws Exception {
+
+        Optional<Student> optionalCustomer = studentDAO.findById(studentDTO.getStudentId());
+
+        if (optionalCustomer.isEmpty()) {
+           new Alert(Alert.AlertType.ERROR,"Student not found");
+        }
+
+        Student student = converter.getStudent(studentDTO);
+        studentDAO.update(student);
+
+    }
 }

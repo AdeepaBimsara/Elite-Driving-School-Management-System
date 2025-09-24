@@ -87,4 +87,54 @@ public class StudentDAOImpl implements StudentDAO {
             session.close();
         }
     }
+
+    @Override
+    public boolean delete(String id) throws SQLException {
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Student student = session.get(Student.class, id);
+            if (student != null){
+                session.remove(student);
+                transaction.commit();
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            e.printStackTrace();
+
+            if (transaction != null){
+                transaction.rollback();
+            }
+            return false;
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean update(Student student) throws SQLException {
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+
+            session.merge(student);
+            transaction.commit();
+            return true;
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+            if (transaction != null){
+                transaction.rollback();
+            }
+            return false;
+
+        }finally {
+            session.close();
+        }
+
+    }
 }

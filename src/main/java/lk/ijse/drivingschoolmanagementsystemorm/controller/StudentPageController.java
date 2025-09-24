@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.drivingschoolmanagementsystemorm.bo.BOFactory;
 import lk.ijse.drivingschoolmanagementsystemorm.bo.BOTypes;
@@ -17,6 +18,7 @@ import lk.ijse.drivingschoolmanagementsystemorm.bo.custom.StudentBO;
 import lk.ijse.drivingschoolmanagementsystemorm.dto.StudentDTO;
 import lk.ijse.drivingschoolmanagementsystemorm.dto.tm.StudentTM;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -122,5 +124,43 @@ public class StudentPageController implements Initializable {
 
                         )).toList()
         ));
+    }
+
+    public void onClickTable(MouseEvent mouseEvent) {
+
+        if (mouseEvent.getClickCount() == 2){
+
+            StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
+
+            try {
+                if (selectedItem != null) {
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddStudent.fxml"));
+                    AnchorPane anchorPane = loader.load();
+
+                    AddStudentController controller = loader.getController();
+
+                    StudentDTO studentDTO = new StudentDTO(
+                            selectedItem.getStudentId(),
+                            selectedItem.getName(),
+                            selectedItem.getAddress(),
+                            selectedItem.getPhone(),
+                            selectedItem.getEmail(),
+                            selectedItem.getRegistrarDate()
+                    );
+
+                    controller.setStudentData(studentDTO);
+
+                    ancStudent.getChildren().clear();
+                    anchorPane.prefWidthProperty().bind(ancStudent.prefWidthProperty());
+                    anchorPane.prefHeightProperty().bind(ancStudent.prefHeightProperty());
+                    ancStudent.getChildren().add(anchorPane);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Failed to load student form!").show();
+
+            }
+        }
     }
 }

@@ -14,4 +14,10 @@ public interface StudentBO extends SuperBO {
     void saveStudent(StudentDTO studentDTO) throws SQLException;
 
     List<StudentDTO> getAllStudent() throws SQLException;
+
+    boolean deleteStudent(String id) throws  Exception;
+
+    void updateStudent(StudentDTO studentDTO) throws Exception;
+
+
 }
