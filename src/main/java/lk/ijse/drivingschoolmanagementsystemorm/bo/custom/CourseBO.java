@@ -14,4 +14,7 @@ public interface CourseBO extends SuperBO {
     String getNextId() throws SQLException;
 
     void saveCourse(CourseDTO courseDTO) throws SQLException;
+
+    boolean deleteCourse(String id) throws  Exception;
+
 }

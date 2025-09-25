@@ -91,7 +91,27 @@ public class CourseDAOImpl implements CourseDAO {
 
     @Override
     public boolean delete(String id) throws SQLException {
-        return false;
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            Course course = session.get(Course.class, id);
+            if (course != null){
+                session.remove(course);
+                transaction.commit();
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            e.printStackTrace();
+
+            if (transaction != null){
+                transaction.rollback();
+            }
+            return false;
+        }finally {
+            session.close();
+        }
     }
 
     @Override

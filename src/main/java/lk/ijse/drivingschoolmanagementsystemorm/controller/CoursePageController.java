@@ -2,15 +2,20 @@ package lk.ijse.drivingschoolmanagementsystemorm.controller;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.drivingschoolmanagementsystemorm.bo.BOFactory;
 import lk.ijse.drivingschoolmanagementsystemorm.bo.BOTypes;
 import lk.ijse.drivingschoolmanagementsystemorm.bo.custom.CourseBO;
+import lk.ijse.drivingschoolmanagementsystemorm.dto.CourseDTO;
+import lk.ijse.drivingschoolmanagementsystemorm.dto.StudentDTO;
 import lk.ijse.drivingschoolmanagementsystemorm.dto.tm.CourseTM;
 import lk.ijse.drivingschoolmanagementsystemorm.dto.tm.StudentTM;
 import lk.ijse.drivingschoolmanagementsystemorm.util.NavigationUtil;
@@ -26,12 +31,12 @@ public class CoursePageController implements Initializable {
     public AnchorPane ancCourse;
     public Button btnAddNewCourse;
 
-    public TableView <CourseTM> tblCourse;
+    public TableView<CourseTM> tblCourse;
 
-    public TableColumn <CourseTM, String> colCourseID;
-    public TableColumn <CourseTM, String> colName;
-    public TableColumn <CourseTM, Double> colFee;
-    public TableColumn <CourseTM, Integer>colDuration;
+    public TableColumn<CourseTM, String> colCourseID;
+    public TableColumn<CourseTM, String> colName;
+    public TableColumn<CourseTM, Double> colFee;
+    public TableColumn<CourseTM, Integer> colDuration;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,9 +46,9 @@ public class CoursePageController implements Initializable {
         colFee.setCellValueFactory(new PropertyValueFactory<>("fee"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
 
-        try{
+        try {
             loadTableData();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -52,7 +57,7 @@ public class CoursePageController implements Initializable {
 
     public void btnAddNewCourse(ActionEvent actionEvent) {
 
-        NavigationUtil.navigateTo(ancCourse,"/view/course/AddCourses.fxml");
+        NavigationUtil.navigateTo(ancCourse, "/view/course/AddCourses.fxml");
     }
 
     private void loadTableData() throws SQLException {
@@ -79,4 +84,42 @@ public class CoursePageController implements Initializable {
 
     }
 
+
+    public void onMouseClicked(MouseEvent mouseEvent) {
+        if (mouseEvent.getClickCount() == 2) {
+
+            CourseTM selectedItem = tblCourse.getSelectionModel().getSelectedItem();
+
+            try {
+                if (selectedItem != null) {
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/course/AddCourses.fxml"));
+                    AnchorPane anchorPane = loader.load();
+
+                    AddCourseController controller = loader.getController();
+
+                    CourseDTO courseDTO = new CourseDTO(
+                            selectedItem.getCourseId(),
+                            selectedItem.getName(),
+                            selectedItem.getDescription(),
+                            selectedItem.getFee(),
+                            selectedItem.getDuration()
+                    );
+
+                    controller.setCourseData(courseDTO);
+
+                    ancCourse.getChildren().clear();
+                    anchorPane.prefWidthProperty().bind(ancCourse.prefWidthProperty());
+                    anchorPane.prefHeightProperty().bind(ancCourse.prefHeightProperty());
+                    ancCourse.getChildren().add(anchorPane);
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Failed to load student form!").show();
+
+            }
+        }
+    }
 }

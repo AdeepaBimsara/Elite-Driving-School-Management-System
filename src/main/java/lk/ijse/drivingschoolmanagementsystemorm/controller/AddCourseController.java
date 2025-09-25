@@ -11,6 +11,7 @@ import lk.ijse.drivingschoolmanagementsystemorm.dto.CourseDTO;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AddCourseController implements Initializable {
@@ -80,6 +81,40 @@ public class AddCourseController implements Initializable {
     }
 
     public void btnDelete(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Are your sure ?",
+                ButtonType.YES,
+                ButtonType.NO
+        );
+
+        Optional<ButtonType> response = alert.showAndWait();
+
+        if (response.isPresent() && response.get() == ButtonType.YES){
+
+            try{
+                String courseId = lblCourseID.getText();
+
+                boolean isDeleted = courseBO.deleteCourse(courseId);
+
+                if (isDeleted){
+
+                    new Alert(
+                            Alert.AlertType.INFORMATION, "course deleted successfully."
+                    ).show();
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "Fail to delete course.").show();
+
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                new Alert(
+                        Alert.AlertType.ERROR, "Fail to delete course..!"
+                ).show();
+            }
+
+        }
     }
 
     public void btnUpdate(ActionEvent actionEvent) {
@@ -93,6 +128,15 @@ public class AddCourseController implements Initializable {
 
     public void btnRemove(ActionEvent actionEvent) {
 
+    } public void setCourseData(CourseDTO courseDTO) {
+
+        lblCourseID.setText(courseDTO.getCourseId());
+        txtName.setText(courseDTO.getName());
+        txtdis.setText(courseDTO.getDescription());
+        txtFee.setText(String.valueOf(courseDTO.getFee()));
+        txtDuration.setText(String.valueOf(courseDTO.getDuration()));
     }
+
+
 
 }

@@ -70,4 +70,22 @@ public class CourseBOImpl implements CourseBO {
         boolean save = courseDAO.save(course);
 
     }
+
+    @Override
+    public boolean deleteCourse(String id) throws Exception {
+
+        Optional<Course> optionalCourse = courseDAO.findById(id);
+
+        if (optionalCourse.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"course not found");
+        }
+
+        try{
+            boolean delete = courseDAO.delete(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }
