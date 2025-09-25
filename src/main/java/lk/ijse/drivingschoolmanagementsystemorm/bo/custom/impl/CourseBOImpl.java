@@ -33,4 +33,25 @@ public class CourseBOImpl implements CourseBO {
         return courseDTOS;
 
     }
+
+    @Override
+    public String getNextId() throws SQLException {
+
+        String lastID = courseDAO.getLastId();
+
+        char tableChar = 'C';
+
+        if (lastID != null){
+
+            String lastNumberString = lastID.substring(1);
+            int lastIdNumber = Integer.parseInt(lastNumberString);
+            int nextIdNumber = lastIdNumber + 1;
+
+            return String.format("%c%03d", tableChar, nextIdNumber);
+
+
+        }
+
+        return tableChar + "001";
+    }
 }

@@ -10,4 +10,6 @@ import java.util.List;
 public interface CourseBO extends SuperBO {
 
     List<CourseDTO> getAllCourse() throws SQLException;
+
+    String getNextId() throws SQLException;
 }

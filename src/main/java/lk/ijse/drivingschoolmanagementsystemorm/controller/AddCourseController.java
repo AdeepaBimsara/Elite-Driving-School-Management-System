@@ -1,13 +1,21 @@
 package lk.ijse.drivingschoolmanagementsystemorm.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.drivingschoolmanagementsystemorm.bo.BOFactory;
+import lk.ijse.drivingschoolmanagementsystemorm.bo.BOTypes;
+import lk.ijse.drivingschoolmanagementsystemorm.bo.custom.CourseBO;
 
-public class AddCourseController {
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+public class AddCourseController implements Initializable {
     public AnchorPane ancAddCourse;
     public Button btnBack;
     public Label lblCourseID;
@@ -22,6 +30,24 @@ public class AddCourseController {
     public Button btnDelete;
     public Button btnUpdate;
     public Button btnCancel;
+
+    private final CourseBO courseBO = BOFactory.getInstance().getBO(BOTypes.COURSE);
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try{
+            loadNextId();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private void loadNextId() throws SQLException {
+        String nextId = courseBO.getNextId();
+        lblCourseID.setText(nextId);
+    }
 
     public void btnBack(ActionEvent actionEvent) {
     }
@@ -44,4 +70,5 @@ public class AddCourseController {
     public void btnRemove(ActionEvent actionEvent) {
 
     }
+
 }

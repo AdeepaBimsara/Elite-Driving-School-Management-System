@@ -17,7 +17,24 @@ public class CourseDAOImpl implements CourseDAO {
 
     @Override
     public String getLastId() throws SQLException {
-        return "";
+
+        Session session = factoryConfiguration.getSession();
+
+        try {
+            Query<String> query = session.createQuery(
+                    "SELECT c.courseId FROM Course c ORDER BY c.courseId DESC",
+                    String.class
+            ).setMaxResults(1);
+
+            List<String> list = query.list();
+
+            if (list.isEmpty()){
+                return null;
+            }
+            return list.get(0);
+        }finally {
+            session.close();
+        }
     }
 
     @Override
