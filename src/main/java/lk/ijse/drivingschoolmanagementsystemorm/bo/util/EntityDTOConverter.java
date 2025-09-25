@@ -1,6 +1,8 @@
 package lk.ijse.drivingschoolmanagementsystemorm.bo.util;
 
+import lk.ijse.drivingschoolmanagementsystemorm.dto.CourseDTO;
 import lk.ijse.drivingschoolmanagementsystemorm.dto.StudentDTO;
+import lk.ijse.drivingschoolmanagementsystemorm.entity.Course;
 import lk.ijse.drivingschoolmanagementsystemorm.entity.Student;
 
 public class EntityDTOConverter {
@@ -31,6 +33,34 @@ public class EntityDTOConverter {
         student.setRegistrarDate(studentDTO.getRegistrarDate());
 
         return student;
+
+    }
+
+    public CourseDTO getCourseDTO(Course course){
+
+        CourseDTO courseDTO = new CourseDTO();
+
+        courseDTO.setCourseId(course.getCourseId());
+        courseDTO.setName(course.getName());
+        courseDTO.setDescription(course.getDescription());
+        courseDTO.setFee(course.getFee());
+        courseDTO.setDuration(course.getDuration());
+
+        return  courseDTO;
+
+    }
+
+    public Course getCourse(CourseDTO courseDTO){
+
+        Course course = new Course();
+
+        course.setCourseId(courseDTO.getCourseId());
+        course.setName(courseDTO.getName());
+        course.setDescription(courseDTO.getDescription());
+        course.setFee(courseDTO.getFee());
+        course.setDuration(courseDTO.getDuration());
+
+        return course;
 
     }
 }
