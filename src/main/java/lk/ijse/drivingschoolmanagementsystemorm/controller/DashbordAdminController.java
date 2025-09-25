@@ -43,7 +43,7 @@ public class DashbordAdminController implements Initializable {
     @FXML
     void btnAdminDAshbordOnAction(ActionEvent event) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/DashbordAdmin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/dashbord/DashbordAdmin.fxml"));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -56,23 +56,23 @@ public class DashbordAdminController implements Initializable {
 
     @FXML
     void btnCourseOnAction(ActionEvent event) {
-            navigateTo("/view/CoursePage.fxml");
+            navigateTo("/view/course/CoursePage.fxml");
     }
 
     @FXML
     void btnInstructorOnAction(ActionEvent event) {
-            navigateTo("/view/InstructorPage.fxml");
+            navigateTo("/view/instructor/InstructorPage.fxml");
     }
 
     @FXML
     void btnLessonOnAction(ActionEvent event) {
-            navigateTo("/view/LessonPage.fxml");
+            navigateTo("/view/lesson/LessonPage.fxml");
     }
 
     @FXML
     void btnLogoutOnAction(ActionEvent event) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/login/LoginPage.fxml"));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -83,12 +83,12 @@ public class DashbordAdminController implements Initializable {
 
     @FXML
     void btnPaymentOnAction(ActionEvent event) {
-            navigateTo("/view/PaymentPage.fxml");
+            navigateTo("/view/payment/PaymentPage.fxml");
     }
 
     @FXML
     void btnStudentOnAction(ActionEvent event) {
-        navigateTo("/view/StudentPage.fxml");
+        navigateTo("/view/student/StudentPage.fxml");
     }
 
     private void navigateTo(String path){

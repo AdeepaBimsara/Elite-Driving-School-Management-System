@@ -18,11 +18,9 @@ import lk.ijse.drivingschoolmanagementsystemorm.bo.custom.StudentBO;
 import lk.ijse.drivingschoolmanagementsystemorm.dto.StudentDTO;
 import lk.ijse.drivingschoolmanagementsystemorm.dto.tm.StudentTM;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class StudentPageController implements Initializable {
 
@@ -84,7 +82,7 @@ public class StudentPageController implements Initializable {
         try{
             ancStudent.getChildren().clear();
 
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/AddStudent.fxml"));
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/student/AddStudent.fxml"));
 
             anchorPane.prefWidthProperty().bind(ancStudent.prefWidthProperty());
             anchorPane.prefHeightProperty().bind(ancStudent.prefHeightProperty());
@@ -135,7 +133,7 @@ public class StudentPageController implements Initializable {
             try {
                 if (selectedItem != null) {
 
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddStudent.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/student/AddStudent.fxml" ));
                     AnchorPane anchorPane = loader.load();
 
                     AddStudentController controller = loader.getController();

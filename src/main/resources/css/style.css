@@ -6,6 +6,14 @@
     -fx-border-width: 0 0 1px 0;
 }
 
+.combo-box {
+    -fx-text-fill: #ecf0f1;
+    -fx-prompt-text-fill: derive(#ecf0f1, -30%);
+    -fx-background-color: #ffffff;
+    -fx-border-color: #181a2f;
+    -fx-border-width: 0 0 1px 0;
+}
+
 .button{
     -fx-background-color: linear-gradient(
             to right,

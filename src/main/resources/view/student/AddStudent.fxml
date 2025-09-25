@@ -20,7 +20,7 @@
             <children>
                 <HBox alignment="TOP_RIGHT">
                     <children>
-                        <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" prefWidth="50.0" stylesheets="@../css/style.css" text="&lt;">
+                        <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" prefWidth="50.0" stylesheets="@../../css/style.css" text="&lt;">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>
@@ -207,14 +207,14 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <ListView fx:id="courseListView" opacity="0.15" styleClass="gradient-list" stylesheets="@../css/style.css">
+                        <ListView fx:id="courseListView">
                             <GridPane.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </GridPane.margin>
                         </ListView>
                         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
                             <children>
-                                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefWidth="100.0" stylesheets="@../css/style.css" text="Add ">
+                                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefWidth="100.0" stylesheets="@../../css/style.css" text="Add ">
                                     <VBox.margin>
                                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                     </VBox.margin>
@@ -222,7 +222,7 @@
                                         <Font name="System Bold" size="13.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#btnRemove" prefWidth="100.0" stylesheets="@../css/style.css" text="Remove">
+                                <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#btnRemove" prefWidth="100.0" stylesheets="@../../css/style.css" text="Remove">
                                     <VBox.margin>
                                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                     </VBox.margin>
@@ -232,7 +232,7 @@
                                 </Button>
                             </children>
                         </VBox>
-                        <ListView fx:id="selectedCoursesListView" opacity="0.15" styleClass="gradient-list" stylesheets="@../css/style.css" GridPane.columnIndex="2">
+                        <ListView fx:id="selectedCoursesListView" GridPane.columnIndex="2">
                             <GridPane.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </GridPane.margin>
@@ -242,9 +242,9 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
                 </GridPane>
-                <HBox alignment="CENTER_RIGHT" stylesheets="@../css/style.css">
+                <HBox alignment="CENTER_RIGHT" stylesheets="@../../css/style.css">
                     <children>
-                        <Button fx:id="btnSave" mnemonicParsing="false" onAction="#btnSave" prefWidth="100.0" styleClass="button-save" stylesheets="@../css/style.css" text="Save" textFill="#ecf0f1">
+                        <Button fx:id="btnSave" mnemonicParsing="false" onAction="#btnSave" prefWidth="100.0" styleClass="button-save" stylesheets="@../../css/style.css" text="Save" textFill="#ecf0f1">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                             </HBox.margin>
@@ -265,7 +265,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Button>
-                        <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#btnCancel" prefWidth="100.0" style="-fx-background-color: #868e90;" styleClass="button-delete" stylesheets="@../css/style.css" text="Cancel" textFill="WHITE">
+                        <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#btnCancel" prefWidth="100.0" style="-fx-background-color: #868e90;" styleClass="button-delete" stylesheets="@../../css/style.css" text="Cancel" textFill="WHITE">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                             </HBox.margin>

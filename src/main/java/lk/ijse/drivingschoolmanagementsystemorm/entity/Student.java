@@ -22,13 +22,13 @@ public class Student {
     @Column(name = "student_name", nullable = false)
     private String name;
 
-    @Column
+    @Column(name = "address")
     private String address;
 
-    @Column(length = 15) // varchar(15)
+    @Column(name = "phone", length = 15) // varchar(15)
     private String phone;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "registrar_date")

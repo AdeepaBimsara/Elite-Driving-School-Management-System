@@ -1,15 +1,14 @@
 package lk.ijse.drivingschoolmanagementsystemorm.controller;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import lk.ijse.drivingschoolmanagementsystemorm.bo.BOFactory;
 import lk.ijse.drivingschoolmanagementsystemorm.bo.BOTypes;
 import lk.ijse.drivingschoolmanagementsystemorm.bo.custom.StudentBO;
@@ -26,18 +25,6 @@ public class AddStudentController implements Initializable {
 
     private final StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
     public Button btnDelete;
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        try{
-            loadNextId();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
     @FXML
     public AnchorPane ancAddStudent;
@@ -61,7 +48,7 @@ public class AddStudentController implements Initializable {
     private Button btnSave;
 
     @FXML
-    private ListView<?> coursesListView;
+    private ListView<String> coursesListView;
 
     @FXML
     private DatePicker datePicker;
@@ -80,6 +67,21 @@ public class AddStudentController implements Initializable {
 
     @FXML
     private TextField txtName;
+
+    private ObservableList<String> listData = FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try{
+            loadNextId();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        
+    }
+
 
     @FXML
     void btnAdd(ActionEvent event) {
@@ -134,7 +136,7 @@ public class AddStudentController implements Initializable {
 
        ancAddStudent.getChildren().clear();
 
-       AnchorPane load = FXMLLoader.load(getClass().getResource("/view/StudentPage.fxml"));
+       AnchorPane load = FXMLLoader.load(getClass().getResource("/view/student/StudentPage.fxml"));
 
 
 

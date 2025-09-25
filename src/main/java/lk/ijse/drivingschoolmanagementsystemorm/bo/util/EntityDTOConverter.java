@@ -27,7 +27,7 @@ public class EntityDTOConverter {
         student.setName(studentDTO.getName());
         student.setAddress(studentDTO.getAddress());
         student.setPhone(studentDTO.getPhone());
-        student.setEmail(studentDTO.getPhone());
+        student.setEmail(studentDTO.getEmail());
         student.setRegistrarDate(studentDTO.getRegistrarDate());
 
         return student;

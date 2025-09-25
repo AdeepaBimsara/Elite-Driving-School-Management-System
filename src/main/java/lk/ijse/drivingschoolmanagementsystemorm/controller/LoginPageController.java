@@ -44,14 +44,14 @@ public class LoginPageController implements Initializable {
                 window.close();
 
                 if (role.equals(Roles.ADMIN)){
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/DashbordAdmin.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/dashbord/DashbordAdmin.fxml"));
                     Stage stage =  new Stage();
                     stage.setFullScreen(true);
                     stage.setScene(new Scene(fxmlLoader.load()));
                     stage.show();
 
                 }else {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/DashbordUser.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/dashbord/DashbordUser.fxml"));
                     Stage stage =  new Stage();
                     stage.setFullScreen(true);
                     stage.setScene(new Scene(fxmlLoader.load()));

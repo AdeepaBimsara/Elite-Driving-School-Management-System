@@ -2,7 +2,6 @@ package lk.ijse.drivingschoolmanagementsystemorm;
 
 import javafx.application.Application;
 import javafx.concurrent.Task;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -50,7 +49,7 @@ public class AppInitializer extends Application {
         Task<Scene> loadingTask = new Task<>() {
             @Override
             protected Scene call() throws Exception {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/DashbordAdmin.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login/LoginPage.fxml"));
                     return new Scene(fxmlLoader.load());
             }
         };

@@ -11,7 +11,7 @@
       <Pane layoutX="413.0" layoutY="70.0" opacity="0.85" prefHeight="519.0" prefWidth="6.0" style="-fx-background-color: white; -fx-background-radius: 10px;" />
       <ImageView fitHeight="102.0" fitWidth="150.0" layoutX="130.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/loginPage.jpg" />
+            <Image url="@../../images/loginPage.jpg" />
          </image>
       </ImageView>
       <VBox layoutX="523.0" layoutY="102.0" opacity="0.98" prefHeight="530.0" prefWidth="355.0">
