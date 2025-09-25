@@ -1,6 +1,6 @@
 package lk.ijse.drivingschoolmanagementsystemorm.bo.custom.impl;
 
-import lk.ijse.drivingschoolmanagementsystemorm.bo.SuperBO;
+import javafx.scene.control.Alert;
 import lk.ijse.drivingschoolmanagementsystemorm.bo.custom.CourseBO;
 import lk.ijse.drivingschoolmanagementsystemorm.bo.util.EntityDTOConverter;
 import lk.ijse.drivingschoolmanagementsystemorm.dao.DAOFactory;
@@ -8,10 +8,12 @@ import lk.ijse.drivingschoolmanagementsystemorm.dao.DAOFactoryTypes;
 import lk.ijse.drivingschoolmanagementsystemorm.dao.custom.CourseDAO;
 import lk.ijse.drivingschoolmanagementsystemorm.dto.CourseDTO;
 import lk.ijse.drivingschoolmanagementsystemorm.entity.Course;
+import lk.ijse.drivingschoolmanagementsystemorm.entity.Student;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CourseBOImpl implements CourseBO {
 
@@ -49,9 +51,23 @@ public class CourseBOImpl implements CourseBO {
 
             return String.format("%c%03d", tableChar, nextIdNumber);
 
-
         }
 
         return tableChar + "001";
+    }
+
+    @Override
+    public void saveCourse(CourseDTO courseDTO) throws SQLException {
+
+        Optional<Course> optionalStudent = courseDAO.findById(courseDTO.getCourseId());
+
+        if (optionalStudent.isPresent()){
+            new Alert(Alert.AlertType.ERROR,"Duplicate student id").show();
+        }
+
+        Course course = converter.getCourse(courseDTO);
+
+        boolean save = courseDAO.save(course);
+
     }
 }

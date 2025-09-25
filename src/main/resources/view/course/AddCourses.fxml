@@ -65,7 +65,7 @@
                 <HBox>
                     <children>
 
-                        <Label text="Name" textFill="#181a2f">
+                        <Label prefHeight="24.0" prefWidth="88.0" text="Name" textFill="#181a2f">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -73,11 +73,28 @@
                                 <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="txtName" prefWidth="400.0" stylesheets="@../../css/style.css">
+                        <TextField fx:id="txtName" prefHeight="27.0" prefWidth="255.0" stylesheets="@../../css/style.css">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
                         </TextField>
+                  <HBox>
+                     <children>
+                        <Label text="Discription" textFill="#181a2f">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtdis" prefHeight="27.0" prefWidth="257.0" stylesheets="@../../css/style.css" text="aaaaaaaa">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
                     </children>
                 </HBox>
                 <GridPane>

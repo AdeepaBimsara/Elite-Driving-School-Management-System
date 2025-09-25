@@ -12,4 +12,6 @@ public interface CourseBO extends SuperBO {
     List<CourseDTO> getAllCourse() throws SQLException;
 
     String getNextId() throws SQLException;
+
+    void saveCourse(CourseDTO courseDTO) throws SQLException;
 }

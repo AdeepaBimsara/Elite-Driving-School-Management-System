@@ -5,6 +5,7 @@ import lk.ijse.drivingschoolmanagementsystemorm.dao.custom.CourseDAO;
 import lk.ijse.drivingschoolmanagementsystemorm.entity.Course;
 import lk.ijse.drivingschoolmanagementsystemorm.entity.Student;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
@@ -38,13 +39,37 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     @Override
-    public boolean save(Object o) throws SQLException {
-        return false;
+    public boolean save(Course course) throws SQLException {
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+            session.persist(course);
+            transaction.commit();
+            return true;
+
+        }catch (Exception e){
+            transaction.rollback();
+            return false;
+        }finally {
+            session.close();
+        }
     }
+
 
     @Override
     public Optional findById(String id) throws SQLException {
-        return Optional.empty();
+        Session session = factoryConfiguration.getSession();
+
+        try {
+
+            Course course = session.get(Course.class, id);
+            return Optional.ofNullable(course);
+
+        }finally {
+
+            session.close();
+        }
     }
 
     @Override
@@ -70,7 +95,8 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     @Override
-    public boolean update(Object o) throws SQLException {
+    public boolean update(Course course) throws SQLException {
         return false;
     }
+
 }

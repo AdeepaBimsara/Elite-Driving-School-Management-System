@@ -125,7 +125,7 @@ public class AddStudentController implements Initializable {
         }catch (Exception e){
 
             e.printStackTrace();
-            new Alert(Alert.AlertType.CONFIRMATION,"faill to save student!").show();
+            new Alert(Alert.AlertType.ERROR,"faill to save student!").show();
 
         }
 
