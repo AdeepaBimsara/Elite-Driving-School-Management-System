@@ -116,7 +116,26 @@ public class CourseDAOImpl implements CourseDAO {
 
     @Override
     public boolean update(Course course) throws SQLException {
-        return false;
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try{
+
+            session.merge(course);
+            transaction.commit();
+            return true;
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+            if (transaction != null){
+                transaction.rollback();
+            }
+            return false;
+
+        }finally {
+            session.close();
+        }
     }
 
 }

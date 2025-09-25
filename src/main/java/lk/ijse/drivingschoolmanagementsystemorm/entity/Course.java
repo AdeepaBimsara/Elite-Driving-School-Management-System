@@ -31,15 +31,15 @@ public class Course {
     private int duration;
 
     // 1:M with Enrollment
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Enrollment> enrollments;
 
     // 1:M with Lesson
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Lesson> lessons;
 
     // 1:M with Learning
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Learning> learnings;
 
 }

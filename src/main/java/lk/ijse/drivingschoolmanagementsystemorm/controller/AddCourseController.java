@@ -118,6 +118,31 @@ public class AddCourseController implements Initializable {
     }
 
     public void btnUpdate(ActionEvent actionEvent) {
+
+        String id =  lblCourseID.getText();
+        String name = txtName.getText();
+        String dis = txtdis.getText();
+        Double fee = Double.valueOf(txtFee.getText());
+        int dura = Integer.parseInt(txtDuration.getText());
+
+        CourseDTO courseDTO = new CourseDTO(
+                id,
+                name,
+                dis,
+                fee,
+                dura
+        );
+
+        try{
+
+            courseBO.updateStudent(courseDTO);
+            new Alert(Alert.AlertType.CONFIRMATION,"course update successfully!").show();
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"faill to update course!").show();
+        }
     }
 
     public void btnCancel(ActionEvent actionEvent) {

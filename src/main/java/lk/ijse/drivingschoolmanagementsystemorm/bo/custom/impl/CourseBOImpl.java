@@ -88,4 +88,16 @@ public class CourseBOImpl implements CourseBO {
         }
         return true;
     }
+
+    @Override
+    public void updateStudent(CourseDTO courseDTO) throws Exception {
+        Optional<Course> optionalCustomer = courseDAO.findById(courseDTO.getCourseId());
+
+        if (optionalCustomer.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR,"Course not found");
+        }
+
+        Course course = converter.getCourse(courseDTO);
+        courseDAO.update(course);
+    }
 }
