@@ -31,11 +31,11 @@ public class Instructor {
     private String specialization;
 
     // 1:M with Lesson
-    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
     private List<Lesson> lessons;
 
     // 1:M with Learning
-    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
     private List<Learning> learnings;
 
 }

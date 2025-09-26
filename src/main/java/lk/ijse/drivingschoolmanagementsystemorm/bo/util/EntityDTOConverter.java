@@ -1,8 +1,10 @@
 package lk.ijse.drivingschoolmanagementsystemorm.bo.util;
 
 import lk.ijse.drivingschoolmanagementsystemorm.dto.CourseDTO;
+import lk.ijse.drivingschoolmanagementsystemorm.dto.InstructorDTO;
 import lk.ijse.drivingschoolmanagementsystemorm.dto.StudentDTO;
 import lk.ijse.drivingschoolmanagementsystemorm.entity.Course;
+import lk.ijse.drivingschoolmanagementsystemorm.entity.Instructor;
 import lk.ijse.drivingschoolmanagementsystemorm.entity.Student;
 
 public class EntityDTOConverter {
@@ -61,6 +63,34 @@ public class EntityDTOConverter {
         course.setDuration(courseDTO.getDuration());
 
         return course;
+
+    }
+
+    public InstructorDTO getInstructorDTO(Instructor instructor){
+
+        InstructorDTO instructorDTO = new InstructorDTO();
+
+        instructorDTO.setInstructorId(instructor.getInstructorId());
+        instructorDTO.setName(instructor.getName());
+        instructorDTO.setEmail(instructor.getEmail());
+        instructorDTO.setPhone(instructor.getPhone());
+        instructorDTO.setSpecialization(instructor.getSpecialization());
+
+        return  instructorDTO;
+
+    }
+
+    public Instructor getInstructor(InstructorDTO instructorDTO){
+
+        Instructor instructor = new Instructor();
+
+        instructor.setInstructorId(instructorDTO.getInstructorId());
+        instructor.setName(instructorDTO.getName());
+        instructor.setEmail(instructorDTO.getEmail());
+        instructor.setPhone(instructorDTO.getPhone());
+        instructor.setSpecialization(instructorDTO.getSpecialization());
+
+        return instructor;
 
     }
 }

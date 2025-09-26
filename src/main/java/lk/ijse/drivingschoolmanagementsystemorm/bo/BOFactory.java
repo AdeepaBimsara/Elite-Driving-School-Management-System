@@ -1,7 +1,6 @@
 package lk.ijse.drivingschoolmanagementsystemorm.bo;
 
-import lk.ijse.drivingschoolmanagementsystemorm.bo.custom.impl.CourseBOImpl;
-import lk.ijse.drivingschoolmanagementsystemorm.bo.custom.impl.StudentBOImpl;
+import lk.ijse.drivingschoolmanagementsystemorm.bo.custom.impl.*;
 
 public class BOFactory {
 
@@ -18,6 +17,9 @@ public class BOFactory {
         return switch (boTypes){
             case STUDENT -> (H) new StudentBOImpl();
             case COURSE -> (H) new CourseBOImpl();
+            case INSTRUCTOR -> (H) new InstructorBOImpl();
+            case LESSON -> (H) new LessonBOImpl();
+            case PAYMENT -> (H) new PaymentBOImpl();
         };
     }
 
