@@ -28,7 +28,7 @@
             </HBox>
              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                  <children>
-                     <Button fx:id="btnAddNewStudent" mnemonicParsing="false" onAction="#btnAddNewStudent" prefWidth="150.0" stylesheets="@../../css/style.css" text="+ add new student" textFill="WHITE">
+                     <Button fx:id="btnAddNewPayment" mnemonicParsing="false" onAction="#btnAddNewPayment" prefWidth="150.0" stylesheets="@../../css/style.css" text="+ add new student" textFill="WHITE">
                          <HBox.margin>
                              <Insets right="10.0" />
                          </HBox.margin>
@@ -43,10 +43,12 @@
              </HBox>
              <TableView>
               <columns>
-                <TableColumn prefWidth="75.0" text="Payment ID" />
-                <TableColumn prefWidth="75.0" text="Amount" />
-                  <TableColumn prefWidth="75.0" text="Date" />
-                  <TableColumn prefWidth="75.0" text="Status" />
+                <TableColumn fx:id="colPaymentID" prefWidth="75.0" text="Payment ID" />
+                  <TableColumn fx:id="colStudentID" prefWidth="75.0" text="Student ID" />
+                <TableColumn fx:id="colAmount" prefWidth="75.0" text="Amount" />
+                  <TableColumn fx:id="colAmountPaid" prefWidth="75.0" text="Amount Paid" />
+                  <TableColumn fx:id="colDate" prefWidth="75.0" text="Date" />
+                  <TableColumn fx:id="colStatus" prefWidth="75.0" text="Status" />
               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
